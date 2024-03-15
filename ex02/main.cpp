@@ -6,7 +6,7 @@
 /*   By: ybouchra <ybouchra@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/15 07:03:56 by ybouchra          #+#    #+#             */
-/*   Updated: 2024/03/15 09:07:38 by ybouchra         ###   ########.fr       */
+/*   Updated: 2024/03/15 12:05:23 by ybouchra         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,6 +15,14 @@
 
 int main()
 {
-    Base b;
-    b.generate();
+    Base obj;
+    
+    Base *base = obj.generate();
+    std::cout << "*******************************\n";
+    obj.identify(base);
+    std::cout << "*******************************\n";
+    obj.identify(*base);
+    
+    delete base;
+
 }

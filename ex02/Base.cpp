@@ -6,7 +6,7 @@
 /*   By: ybouchra <ybouchra@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2024/03/15 07:43:58 by ybouchra          #+#    #+#             */
-/*   Updated: 2024/03/15 09:17:49 by ybouchra         ###   ########.fr       */
+/*   Updated: 2024/03/15 12:10:09 by ybouchra         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,27 +23,63 @@ int getRandomInt() {
 
 Base* Base::generate(void)
 {
-    Base *base = NULL;
-    
     switch (getRandomInt())
     {
     case 1 :
-        std::cout << "instanciate A\n";
-        base = new(A);
-        break;
+        return(std::cout << "instanciate A\n", new(A));
     case 2 :
-        std::cout << "instanciate B\n";
-        base = new(B);
-        break;
+        return(std::cout << "instanciate B\n", new(B));
     case 3 :
-        std::cout << "instanciate C\n";
-        base = new(C);
-        break;
+        return(std::cout << "instanciate C\n", new(C));
     }
-    return(base);
+    return(NULL);
     
+}
+
+void Base::identify(Base* p)
+{
+
+    A *type1 = dynamic_cast<A*>(p);
+    B *type2 = dynamic_cast<B*>(p);
+    C *type3 = dynamic_cast<C*>(p);
+
+    if(type1)
+        std::cout << "The Base Class Point Of Direved Class : A\n";
+    else if(type2)
+        std::cout << "The Base Class Point Of Direved Class : B\n";
+    else if(type3)
+        std::cout << "The Base Class Point Of Direved Class : C\n";
+}
+
+void Base::identify(Base& p)
+{
+    try{
+        A &type1 = dynamic_cast<A&>(p);
+        std::cout <<"The Base Class Point Of Direved Class : A\n";
+        (void)&type1;
+    }
+    catch(std::exception &ex){
+        std::cerr << "Dynamic cast failed: " << ex.what() << std::endl;
+    }
+    try{
+        B &type2 = dynamic_cast<B&>(p);
+        std::cout << "The Base Class Point Of Direved Class : B\n";
+        (void)&type2;
+    }
+    catch(std::exception &ex){
+    std::cerr << "Dynamic cast failed: " << ex.what() << std::endl;
+    }
+    try{
+        C &type3 = dynamic_cast<C&>(p);
+        std::cout << "The Base Class Point Of Direved Class : C\n";
+        (void)&type3;
+    }
+    catch(std::exception &ex){
+        std::cerr << "Dynamic cast failed: " << ex.what() << std::endl;
+    }
+
 }
 Base::~Base()
 {
-    std::cout << "destructor called\n";
+    // std::cout << "~Destructor Called\n";
 }
